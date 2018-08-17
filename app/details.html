@@ -1,0 +1,180 @@
+<div class="panel-default jumbotron">
+    <div class="panel-body">
+
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                <h4><span class="label ">First Name</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.DRVFNAME"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Last Name</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.DRVLNAME"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6" style="margin-top: -50px;">
+                    <img ng-src="{{driverDetails.picFile}}" class="img-fluid rounded-circle" alt="Image"  height="80">
+
+                </div>
+
+            </div>
+            <!--<div class="row">-->
+
+                <!--<div class="col-md-3 pull-right">-->
+                    <!--<img ng-src="{{driverDetails.picFile}}" class="img-rounded" alt="Image"  height="80">-->
+
+                <!--</div>-->
+
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Car Number</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4><span class="label">{{driverDetails.CARNUM}}</span></h4>
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Car Name</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4><span class="label">{{driverDetails.CARNAME}}</span></h4>
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label">Address</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.ADDRS1"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Alternate Address</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.ADDRS2"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">City</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.CITY"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label">Zip Code</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.ZIPCODE"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+                 </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Country</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.COUNTRY"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label ">Mobile Number</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.PHNO"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-md-6">
+                    <h4><span class="label">Age</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <input data-ng-model="driverDetails.DRVAGE"
+                           class="form-control iedit"
+                           type="text"
+                           ng-disabled="displayDetail"
+                    />
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row" ng-hide="displayDetail">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 pull-right">
+            <button  class="btn btn-primary navbar-btn"  ng-click="updateDetails($event)">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

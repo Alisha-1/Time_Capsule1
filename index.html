@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="app/appStyle.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+
+<link rel="stylesheet" ng-href="{{css}}">
+
+
+
+<body>
+
+  <div class="Homebar">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">
+            <img style="height: 20px; width: 60px;" src="Logo.png"></img>
+          </a>
+          <a class="navbar-brand" href="#">Time Capsule</a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar" style="color:white">
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-click="navCreate1()" ng-if="!login">
+              <span class="glyphicon glyphicon-time"></span> Create</li>
+            <li class="active" ng-click="navMyCapsule()" ng-if="!login">
+              <span class="glyphicon glyphicon-home"></span> MyCapsules</li>
+            <li ng-click="navSignout()" ng-if="!login">
+              <span class="glyphicon glyphicon-user" ></span> Sign out
+              <li>
+                <li class="active" ng-if="login" ng-click="home()">
+                  
+                  <span class="glyphicon glyphicon-home">Home</span>
+                </li >
+                <li ng-click="signUp()" ng-if="login">
+
+                  <span class="glyphicon glyphicon-user">Sign Up</span>
+                </li>
+                <li ng-click="logIn()" ng-if="login">
+
+                  <span class="glyphicon glyphicon-log-in">Login</span>
+                </li>
+          </ul>
+
+
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <div ng-view></div>
+
+
+
+</body>
+<script type='text/javascript' src="app.js" charset="UTF-8"></script>
+<script src="app/maincontroller.js"></script>
+<script src="app/registerController.js"></script>
+<script src="app/detailCtrl.js"></script>
+
+
+</html>

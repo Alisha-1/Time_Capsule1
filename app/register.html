@@ -1,0 +1,157 @@
+
+<div class="row rborder jumbotron" ng-controller="registCtrl">
+    <form name="frmRegister" novalidate>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding" style="padding-top: 2px;">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fn">First name</label>
+            <div class="col-md-4">
+                <input id="fn" name="fn" type="text" placeholder="first name" ng-model="driverDetails.DRVFNAME" class="form-control input-md" required>
+            </div>
+
+            <span class="rmessage" ng-show="!frmRegister.fn.$valid">First Name is required</span>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="ln">Last name</label>
+            <div class="col-md-4">
+                <input id="ln" name="ln" type="text" placeholder="last name" ng-model="driverDetails.DRVLNAME" class="form-control input-md" required="">
+            </div>
+        </div>
+    </div>
+
+        <!--Age-->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Car Name</label>
+                <div class="col-md-4">
+                    <input id="dage" name="dage" type="text" placeholder="Age" ng-model="driverDetails.DRVAGE"
+                           class="form-control input-md" required>
+                </div>
+                <span class="rmessage" ng-show="!frmRegister.dage.$valid">Age is required</span>
+
+            </div>
+        </div>
+    <!--car number-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Car Number</label>
+
+            <div class="col-md-4">
+                <input id="carno" name="carno" type="text" placeholder="Car Number" ng-model="driverDetails.CARNUM"  class=" form-control input-md"  required>
+            </div>
+            <span class="rmessage" ng-show="!frmRegister.carno.$valid">Car Number is required</span>
+
+        </div>
+    </div>
+
+    <!--Car Name-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Car Name</label>
+            <div class="col-md-4">
+                <input id="carname" name="carname" type="text" placeholder="Car Name" ng-model="driverDetails.CARNAME" class="form-control input-md" required>
+
+         </div>
+            <div>
+            <div class="rmessage" ng-show="!frmRegister.carname.$valid">Car Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <!-- aDRESS-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="add1">Address 1</label>
+            <div class="col-md-4">
+                <input id="add1" name="add1" type="text" placeholder="" class="form-control input-md" ng-model="driverDetails.ADDRS1" required>
+
+
+            </div>
+            <div class="rmessage" ng-show="!frmRegister.add1.$valid">Adress is required</div>
+        </div>
+    </div>
+        <!-- aDRESS2 input-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="add2">Address 2</label>
+            <div class="col-md-4">
+                <input id="add2" name="add2" type="text" placeholder=""  ng-model="driverDetails.ADDRS2" class="form-control input-md">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="city">City</label>
+            <div class="col-md-4">
+                <input id="city" name="city" type="text" placeholder="city" ng-model="driverDetails.CITY"
+                       class="form-control input-md" required="">
+             </div>
+            <span class="rmessage" ng-show="!frmRegister.city.$valid">City is required</span>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="zip">Zip Code</label>
+            <div class="col-md-4">
+                <input id="zip" name="zip" type="text" placeholder="Zip Code" ng-model="driverDetails.ZIPCODE"
+                       class="form-control input-md" required="">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="ctry">Country</label>
+            <div class="col-md-4">
+                <input id="ctry" name="ctry" type="text" placeholder="Country" class="form-control input-md"
+                       ng-model="driverDetails.COUNTRY" required>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="phone">Text InputPhone</label>
+            <div class="col-md-4">
+                <input id="phone" name="phone" type="text" placeholder="Phone#" class="form-control input-md"
+                       ng-model="driverDetails.PHNO" required>
+            </div>
+            <span class="rmessage" ng-show="!frmRegister.phone.$valid">Phone is required</span>
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="phone">Upload Image</label>
+                <div class="col-md-4">
+                    <!--<input type="file" class="fileUpload"  name="sampleFile" />-->
+                    <!--<input type = "file" class="fileUpload"  file-model = "myFile"/>-->
+                    <input type="file" class="fileUpload" ngf-select="" ng-model="driverDetails.picFile" name="file" ngf-accept="'image/*'" required="">
+                </div>
+
+            </div>
+        </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 rpadding">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit"></label>
+            <div class="col-md-4">
+                <button id="submit"  class="btn btn-primary" ng-click="saveDetails($event)">Save</button>
+                <button id="cancel" name="cancel" class="btn" ng-click="cancel($event)">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+    </form>
+</div>
