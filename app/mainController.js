@@ -12,7 +12,6 @@ app.controller("myCtrl", function($scope, $http, $location, $route, $rootScope) 
       return $route.current && $route.current.css;
     },
     function(value) {
-      debugger;
       $scope.css = value;
       if(self.loginChecked){
          $scope.login = false;
@@ -43,33 +42,28 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
   };
 
   $scope.driverList = function(event) {
-    debugger;
     $http({
       url: "/app",
       method: "post",
       data: { action: "getData" }
     }).then(
       function(response) {
-        debugger;
         alert(response.data.confirm);
         $scope.driverData = response.data.driverData;
         // $location.path( "/details" );
       },
       function(response) {
         // optional
-        debugger;
       }
     );
   };
   $scope.detailPage = function(drvData) {
-    debugger;
     var carno = drvData["CARNUM"];
     $scope.editBtn = true;
 
     $location.path("/details/" + carno);
   };
   $scope.loginData = function(){
-      debugger;
    
       $scope.loginChecked = true;
     $location.path("/Landing");
@@ -77,88 +71,71 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
 
   }
   $scope.logIn = function() {
-    debugger;
     $location.path("/Login");
   };
 
   $scope.home = function() {
-    debugger;
     $location.path("/");
   };
 
   $scope.signUp = function() {
-    debugger;
     $location.path("/SignUp");
   };
 
 
   $scope.navCreate1 = function() {
-    debugger;
     $location.path("/Create_1");
   };
 
   $scope.navCreate2 = function() {
-    debugger;
     $location.path("/Create_2");
   };
 
   $scope.navCancel = function() {
-    debugger;
     $location.path("/Cancel");
   };
 
   $scope.navCreate3 = function() {
-    debugger;
     $location.path("/Create_3");
   };
 
   $scope.navCreate4 = function() {
-    debugger;
     $location.path("/Create_4");
   };
 
   $scope.navCreate5 = function() {
-    debugger;
     $location.path("/Create_5");
   };
 
   $scope.navCreate6 = function() {
-    debugger;
     $location.path("/Create_6");
   };
 
   $scope.navCreate7 = function() {
-    debugger;
     $location.path("/Create_7");
   };
 
   $scope.navCreate8 = function() {
-    debugger;
     $location.path("/Create_8");
   };
 
   $scope.navCreate9 = function() {
-    debugger;
     $location.path("/Create_9");
   };
 
   $scope.navMyCapsule = function() {
-    debugger;
     $location.path("/MyCapsule");
   };
 
   $scope.navEvent1 = function() {
-    debugger;
     $location.path("/Event1");
   };
 
   $scope.navEvent2 = function() {
-    debugger;
     $location.path("/Event2");
   };
 
   $scope.navSignout = function() {
-    debugger;
     $scope.signOut = true;
     $location.path("/Signout");
   };
@@ -169,7 +146,6 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
     description: ""
   };
   $scope.create = function(event) {
-    debugger;
     $location.path("/register");
   };
   $scope.saveData = function(event) {
@@ -181,7 +157,6 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
     }).then(
       function(response) {
         // success
-        debugger;
         alert(response.data.confirm);
         $scope.totalData = response.data.createdData;
         // $location.path( "/details" );
@@ -189,7 +164,6 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
       function(response) {
         // optional
         // failed
-        debugger;
       }
     );
   };

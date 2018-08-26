@@ -2,7 +2,7 @@ const { Pool } = require('pg')
 const { parse } = require('pg-connection-string')
 
 const pool = new Pool(
-  parse(process.env.DATABASE_URL || 'postgres://localhost:5432/timecapsule')
+  parse(process.env.DATABASE_URL || 'postgres://femodzrnsqafnc:7e9011a13dc74d0ac54ac3776ebcea139197010fed339cc9f57686a16f5daf43@ec2-54-247-123-231.eu-west-1.compute.amazonaws.com:5432/d71aserb3ek998?ssl=true' || 'postgres://localhost:5432/timecapsule')
 )
 
 async function connect() {
@@ -15,33 +15,30 @@ async function checkLogin(username, password) {
 
   try {
     const client = await connect()
-    const result = await client.query(`SELECT ID, EMAIL, PASSWORD FROM USERS WHERE EMAIL = '${username}'`)
-
+    const result = await client.query(`SELECT "UserID", "Name", "Email", "Password" FROM "Users" WHERE "Email" = '${username}'`)
     if (result) {
       if (result.rows) {
         if (result.rows[0]) {
-          if (result.rows[0].password == password) {
-            client.release()
-            return [null
-              , result.rows[0].id, result.rows[0].email]
+          if (result.rows[0].Password == password) {
+            console.log('Login completed')
+            if (client)
+              client.release()
+            return result.rows[0]
           } else {
-            err = 'Password does not match'
+            throw('Cannot log in')
           }
         } else {
-          err = 'Username not found'
+          throw('Cannot log in')
         }
       } else {
-        err = 'Username not found'
+        throw('Cannot log in')
       }
     } else {
-      err = 'Username not found'
+      throw('Cannot log in')
     }
   } catch(e) {
-    err = e.toString()
+    throw(e);
   }
-  
-  client.release()
-  return [err, null]
 }
 
 async function createUser(username, password, name) {

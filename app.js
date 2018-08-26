@@ -1,9 +1,10 @@
 
 // const wfewhf = require('./test')
 var app = angular.module("myApp", ["ngRoute"]);
+
 app.config(function($routeProvider) {
 	console.log($routeProvider);
-	debugger;
+
     $routeProvider
     .when("/Create_1", {
       templateUrl: 'app/Create_1.html',
@@ -12,13 +13,12 @@ app.config(function($routeProvider) {
 
      }).when("/",{
     	templateUrl: 'app/Main_Home.html',
-        controller: "myCtrl",
         css: 'Main_Home.css'
 
     
     }).when("/Login",{
     	templateUrl: 'app/Login.html',
-        controller: "myCtrl",
+        controller: "LoginController",
         css: 'Login.css'
 
     
@@ -107,6 +107,24 @@ app.config(function($routeProvider) {
     .when("/Signout",{
         templateUrl:'app/Main_Home.html',
     })
-
-
 });
+
+app.factory('AuthService', function($http) {
+    var authService = {};
+
+    authService.login = function(credentials) {
+        return $http
+            .post('/login', credentials)
+            .then((response) => {
+                return response.data 
+            })
+    }
+
+    return authService;
+})
+
+app.service('Session', function () {
+    this.create = function (user) {
+        this.user = user
+    }
+})
