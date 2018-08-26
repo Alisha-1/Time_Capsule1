@@ -31,12 +31,13 @@ app.get('*', function (req, res) {
    }
 });
 
-app.post('/app',function (req, res) {
-})
-
 app.post('/login', async (req, res) => {
   try {
+
+    // Search DB and compare passwords
     const user = await db.checkLogin(req.body.username, req.body.password)
+
+    // Send user data back to the client
     res.json(user)
   } catch(e) {
     console.error('Error in login', e)
@@ -109,7 +110,7 @@ app.post('/capsule', async (req, res) => {
   try {
     console.log('Capsule POST with', req.body)
     const capsuleId = await db.createCapsule(req.body)
-    console.log(capsuleId)
+    
     res.json({
       capsuleId: capsuleId
     })

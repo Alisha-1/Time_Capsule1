@@ -43,12 +43,15 @@ async function checkLogin(username, password) {
 
 async function createUser(username, password, name) {
   const client = await connect()
+
+  // Checks to see if the user already exists
   const result = await client.query(`SELECT "UserID", "Email" FROM "Users" WHERE "Email" = '${username}'`)
 
   if (result) {
     if (result.rows[0]) {
       throw("User already exists")
     } else {
+      // Create record in Database
       await client.query(`INSERT INTO "Users" ("Email", "Password", "Name") VALUES ('${username}', '${password}', '${name}')`)
       return await checkLogin(username, password)
     }
@@ -60,7 +63,7 @@ async function createUser(username, password, name) {
 async function createCapsule({ images, date, recipient, userId }) {
   const client = await connect()
   const result = await client.query(`INSERT INTO "Time_Capsule" ("UserID", "Recieved_Date") VALUES ('${userId}', '${date}') RETURNING *`)
-  const capsuleId =result.rows[0].CapsuleID
+  const capsuleId = result.rows[0].CapsuleID
   await client.query(`INSERT INTO "Time_Capsule-Recipient" ("CapsuleID", "Recipient_Email") VALUES ('${capsuleId}', '${recipient}')`)
 
   images.forEach(async image => {

@@ -44,7 +44,6 @@ app.controller('CreateController', ($scope, $http, $rootScope) => {
   }
 
   $scope.createCapsule = () => {
-    console.log('$scope.tc', $scope.tc)
     $http.post('/capsule', {
       images: $scope.images,
       date: new Date($scope.tc.date.getFullYear(), $scope.tc.date.getMonth(), $scope.tc.date.getDate(), $scope.tc.time.getHours(), $scope.tc.time.getMinutes()),
