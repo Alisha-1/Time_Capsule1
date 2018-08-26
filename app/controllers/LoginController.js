@@ -8,7 +8,6 @@ angular.module('myApp')
     $scope.login = function() {
       AuthService.login($scope.credentials)
         .then((user) => {
-          console.log(user)
           if ('error' in user) {
             $scope.errors = user.error
           } else {

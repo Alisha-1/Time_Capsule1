@@ -56,27 +56,30 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// app.post('/register', async (req, res) => {
-//   const username = req.body.username
-//   const name = req.body.name
-//   const password = req.body.password
-//   const password2 = req.body.password2
+app.post('/register', async (req, res) => {
+  const username = req.body.email
+  const name = req.body.name
+  const password = req.body.password
+  const password2 = req.body.password2
 
-//   if (password != password2) {
-//     res.render("404", { error: 'Password does not match' })
-//   } else {
-//     const err = await db.createUser(username, password, name)
-//     if (!err) {
-//       await cache.createSession(res, username)
-//       res.json({
-
-//       })
-//     } else {
-//       console.error('Error in login', err)
-//       res.render("404", { error: err.toString() })
-//     }
-//   }
-// })
+  try {
+    if (password != password2) {
+      res.json({
+        error: 'Password does not match'
+      })
+    } else {
+      const user = await db.createUser(username, password, name)
+      res.json({
+        user
+      })
+    }
+  } catch(e) {
+    console.error('Error in login', e)
+    res.json({
+      error: e.toString()
+    })
+  }
+})
 
 async function start() {
   try {

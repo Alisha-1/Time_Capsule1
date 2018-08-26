@@ -43,19 +43,18 @@ async function checkLogin(username, password) {
 
 async function createUser(username, password, name) {
   const client = await connect()
-  let err = null
-  const result = await client.query(`SELECT ID, EMAIL FROM USERS WHERE EMAIL = '${username}'`)
+  const result = await client.query(`SELECT "UserID", "Email" FROM "Users" WHERE "Email" = '${username}'`)
 
   if (result) {
     if (result.rows[0]) {
-      err = "User already exists"
+      throw("User already exists")
     } else {
-      await client.query(`INSERT INTO USERS (EMAIL, PASSWORD, NAME) VALUES ('${username}', '${password}', '${name}')`)
+      await client.query(`INSERT INTO "Users" ("Email", "Password", "Name") VALUES ('${username}', '${password}', '${name}')`)
+      return await checkLogin(username, password)
     }
   }
 
   client.release()
-  return err
 }
 
 module.exports = {

@@ -3,8 +3,7 @@
 var app = angular.module("myApp", ["ngRoute"]);
 
 app.config(function($routeProvider) {
-	console.log($routeProvider);
-
+	
     $routeProvider
     .when("/Create_1", {
       templateUrl: 'app/Create_1.html',
@@ -24,7 +23,7 @@ app.config(function($routeProvider) {
     
     }).when("/SignUp",{
     	templateUrl: 'app/Sign_Up.html',
-        controller: "myCtrl",
+        controller: "RegistrationController",
         css: 'Login.css'
 
 
@@ -108,23 +107,3 @@ app.config(function($routeProvider) {
         templateUrl:'app/Main_Home.html',
     })
 });
-
-app.factory('AuthService', function($http) {
-    var authService = {};
-
-    authService.login = function(credentials) {
-        return $http
-            .post('/login', credentials)
-            .then((response) => {
-                return response.data 
-            })
-    }
-
-    return authService;
-})
-
-app.service('Session', function () {
-    this.create = function (user) {
-        this.user = user
-    }
-})
