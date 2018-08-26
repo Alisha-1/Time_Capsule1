@@ -1,5 +1,12 @@
 var express = require('express');
 var app = express();
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+var AWS = require('aws-sdk')
+var s3 = new AWS.S3()
+var fs = require('fs')
+
+var BASE_S3_URL = 'https://s3.amazonaws.com/timecapsule-alisha'
 
 var bodyParser = require('body-parser')
 const db = require('./db')
@@ -79,6 +86,40 @@ app.post('/register', async (req, res) => {
       error: e.toString()
     })
   }
+})
+
+app.post('/upload', upload.single('file'), (req, res) => {
+
+  let userId = req.body.userId ? 'anon' : req.body.userId
+
+  console.log('/upload', req.file)
+  fs.readFile(req.file.path, (err, data) => {
+    if (err) { 
+      console.error(err)
+      res.json({
+        error: err
+      })
+    } else {
+      var base64data = new Buffer(data, 'binary');
+
+      s3.putObject({
+        Bucket: 'timecapsule-alisha',
+        Key: `${userId}/${req.file.originalname}`,
+        Body: base64data,
+        ACL: 'public-read'
+      }, (err, resp) => {
+        if (err) {
+          console.error(err)
+        }
+        console.log('Successfully uploaded package.');
+        res.json({
+          error: err,
+          result: Object.assign({}, resp, { fileName: `${BASE_S3_URL}/${userId}/${req.file.originalname}` })
+        })
+      });
+    }
+  })
+  
 })
 
 async function start() {
