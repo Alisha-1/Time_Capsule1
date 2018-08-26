@@ -57,8 +57,22 @@ async function createUser(username, password, name) {
   client.release()
 }
 
+async function createCapsule({ images, date, recipient, userId }) {
+  const client = await connect()
+  const result = await client.query(`INSERT INTO "Time_Capsule" ("UserID", "Recieved_Date") VALUES ('${userId}', '${date}') RETURNING *`)
+  const capsuleId =result.rows[0].CapsuleID
+  await client.query(`INSERT INTO "Time_Capsule-Recipient" ("CapsuleID", "Recipient_Email") VALUES ('${capsuleId}', '${recipient}')`)
+
+  images.forEach(async image => {
+    await client.query(`INSERT INTO "Content" ("CapsuleID", "Description", "URL") VALUES ('${capsuleId}', '${image.description}', '${image.fileName}')`)
+  })
+
+  return capsuleId
+}
+
 module.exports = {
   connect,
   checkLogin,
-  createUser
+  createUser,
+  createCapsule
 }

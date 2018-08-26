@@ -20,23 +20,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname + '/app/styles'));
 app.use(express.static(__dirname + '/app/Images'));
 
-
-// // const { Client } = require('pg');
-// var pg = require("pg");
-
-// const connection = process.env.DATABASE_URL || 'postgres://femodzrnsqafnc:7e9011a13dc74d0ac54ac3776ebcea139197010fed339cc9f57686a16f5daf43@ec2-54-247-123-231.eu-west-1.compute.amazonaws.com:5432/d71aserb3ek998';
-
-// var client = new pg.Client({
-//     user: "femodzrnsqafnc",
-//     password: "7e9011a13dc74d0ac54ac3776ebcea139197010fed339cc9f57686a16f5daf43",
-//     database: "d71aserb3ek998",
-//     port: 5432,
-//     host: "ec2-54-247-123-231.eu-west-1.compute.amazonaws.com",
-//     ssl: true
-//   });
-
-// client.connect();
-
 app.get('*', function (req, res) {
     console.log(req.path);
    var path = req.path;
@@ -120,6 +103,22 @@ app.post('/upload', upload.single('file'), (req, res) => {
     }
   })
   
+})
+
+app.post('/capsule', async (req, res) => {
+  try {
+    console.log('Capsule POST with', req.body)
+    const capsuleId = await db.createCapsule(req.body)
+    console.log(capsuleId)
+    res.json({
+      capsuleId: capsuleId
+    })
+  } catch(e) {
+    console.error(e)
+    res.json({
+      error: e
+    })
+  }
 })
 
 async function start() {
