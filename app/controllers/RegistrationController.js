@@ -1,5 +1,5 @@
 angular.module('myApp')
-  .controller('RegistrationController', ($scope, AuthService, Session, $location) => {
+  .controller('RegistrationController', ($scope, AuthService, $rootScope, $location) => {
     $scope.details = {
       username: '',
       password: '',
@@ -16,7 +16,8 @@ angular.module('myApp')
           } else {
             $scope.errors = ''
             console.log('Registration Completed')
-            Session.create(data.user)
+            $rootScope.user = data.user
+            $rootScope.loggedIn = true
             $location.path('/MyCapsule')
           }
         })

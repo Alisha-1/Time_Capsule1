@@ -29,31 +29,28 @@
           <a class="navbar-brand" href="#">
             <img style="height: 20px; width: 60px;" src="Logo.png"></img>
           </a>
-          <a class="navbar-brand" href="#">Time Capsule</a>
+          <a class="navbar-brand" href="#/MyCapsules">Time Capsule</a>
 
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar" style="color:white">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-click="navCreate1()" ng-if="!login">
+            <li ng-click="navCreate1()" ng-if="loggedIn">
               <span class="glyphicon glyphicon-time"></span> Create</li>
-            <li class="active" ng-click="navMyCapsule()" ng-if="!login">
+            <li class="active" ng-click="navMyCapsule()" ng-if="loggedIn">
               <span class="glyphicon glyphicon-home"></span> MyCapsules</li>
-            <li ng-click="navSignout()" ng-if="!login">
-              <span class="glyphicon glyphicon-user" ></span> Sign out
-              <li>
-                <li class="active" ng-if="login" ng-click="home()">
-                  
-                  <span class="glyphicon glyphicon-home">Home</span>
-                </li >
-                <li ng-click="signUp()" ng-if="login">
+            <li ng-click="navSignout()" ng-if="loggedIn">
+              <span class="glyphicon glyphicon-user" ></span> Sign out</li>
+            <li class="active" ng-click="home()" ng-if="!loggedIn">
+              <span class="glyphicon glyphicon-home">Home</span>
+            </li >
+            <li ng-click="signUp()" ng-if="!loggedIn">
+              <span class="glyphicon glyphicon-user">Sign Up</span>
+            </li>
+            <li ng-click="logIn()" ng-if="!loggedIn">
 
-                  <span class="glyphicon glyphicon-user">Sign Up</span>
-                </li>
-                <li ng-click="logIn()" ng-if="login">
-
-                  <span class="glyphicon glyphicon-log-in">Login</span>
-                </li>
+              <span class="glyphicon glyphicon-log-in">Login</span>
+            </li>
           </ul>
 
 
@@ -69,10 +66,10 @@
 
 </body>
 <script type='text/javascript' src="app.js" charset="UTF-8"></script>
-<script type='text/javascript' src="app/services/SessionService.js" charset="UTF-8"></script>
 <script type='text/javascript' src="app/services/AuthService.js" charset="UTF-8"></script>
 <script type='text/javascript' src="app/controllers/LoginController.js" charset="UTF-8"></script>
 <script type='text/javascript' src="app/controllers/RegistrationController.js" charset="UTF-8"></script>
+<script type='text/javascript' src="app/controllers/CreateController.js" charset="UTF-8"></script>
 
 <script src="app/maincontroller.js"></script>
 <script src="app/registerController.js"></script>

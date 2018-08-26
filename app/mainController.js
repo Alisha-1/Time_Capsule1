@@ -1,12 +1,15 @@
 app.controller("myCtrl", function($scope, $http, $location, $route, $rootScope) {
   $scope.totalData = [];
   $scope.displayBtn = false;
-  $scope.login = true;
+  //$scope.login = true;
   self =  $scope;
   
   $scope.editBtn = false;
   $scope.driverData = [];
   $scope.css = "Main_Home.css";
+
+  //$scope.login = angular.copy($rootScope.login)
+
   $scope.$watch(
     function() {
       return $route.current && $route.current.css;
@@ -84,7 +87,7 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
 
 
   $scope.navCreate1 = function() {
-    $location.path("/Create_1");
+    $location.path("/Create");
   };
 
   $scope.navCreate2 = function() {
@@ -136,6 +139,7 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
   };
 
   $scope.navSignout = function() {
+    $rootScope.loggedIn = false;
     $scope.signOut = true;
     $location.path("/Signout");
   };
