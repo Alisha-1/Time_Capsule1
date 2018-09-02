@@ -20,15 +20,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname + '/app/styles'));
 app.use(express.static(__dirname + '/app/Images'));
 
-app.get('*', function (req, res) {
-   if(req.path == '/'){
-     res.sendFile( __dirname + "/" + "index.html" );
-   }else
-   {
-     res.sendFile( __dirname + req.path);
-   }
-});
-
 app.post('/login', async (req, res) => {
   try {
 
@@ -135,6 +126,32 @@ app.patch('/capsule', async (req, res) => {
     })
   }
 })
+
+app.get('/user/:userId/capsules', async (req, res) => {
+  try {
+    const userId = req.params.userId
+    console.log('/user/:userId/capsules', req.params)
+    const capsules = await db.getCapsulesForUser(userId)
+    
+    res.json({
+      result: capsules
+    })
+  } catch(e) {
+    console.error(e)
+    res.json({
+      error: e
+    })
+  }
+})
+
+app.get('*', function (req, res) {
+  if(req.path == '/'){
+    res.sendFile( __dirname + "/" + "index.html" );
+  }else
+  {
+    res.sendFile( __dirname + req.path);
+  }
+});
 
 async function start() {
   try {

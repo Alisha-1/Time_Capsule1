@@ -79,10 +79,17 @@ async function updateCapsule({ capsuleId, closeDate }) {
   return result
 }
 
+async function getCapsulesForUser(userId) {
+  const client = await connect()
+  const result = await client.query(`SELECT * FROM "Time_Capsule" WHERE "UserID" = '${userId}'`)
+  return result.rows
+}
+
 module.exports = {
   connect,
   checkLogin,
   createUser,
   createCapsule,
-  updateCapsule
+  updateCapsule,
+  getCapsulesForUser
 }

@@ -29,74 +29,17 @@ app.config(function($routeProvider) {
         css: 'Main_Home.css'
 
     
-    }).when("/Create_2", {
-        templateUrl: 'app/Create_2.html',
-        css: 'Create.css'
+    }).when("/MyCapsule",{
+        templateUrl:'app/MyCapsule.html',
+        controller: "MyCapsuleController",
+        css: 'MyCapsule.css'
 
-  
     })
       .when("/Cancel",{
         templateUrl:'app/Create_1.html',
         css: 'Create.css'
 
     })
-
-    .when("/Create_3",{
-        templateUrl:'app/Create_3.html',
-        css: 'Create.css'
-
-    })
-
-    .when("/Create_4",{
-        templateUrl:'app/Create_4.html',
-        css: 'Create.css'
-
-    })
-
-    .when("/Create_5",{
-        templateUrl:'app/Create_5.html',
-        css: 'Create.css'
-
-    })
-
-    .when("/Create_6",{
-        templateUrl:'app/Create_6.html',
-        css: 'Create.css'
-
-    })
-    .when("/Create_7",{
-        templateUrl:'app/Create_7.html',
-        css: 'Create.css'
-
-    })
-    .when("/Create_8",{
-        templateUrl:'app/Create_8.html',
-        css: 'Create.css'
-
-    })
-    .when("/Create_9",{
-        templateUrl:'app/Create_9.html',
-              css: 'Create.css'
-
-    })
-
-    .when("/MyCapsule",{
-        templateUrl:'app/MyCapsule.html',
-        css: 'MyCapsule.css'
-
-    })
-
-    .when("/Event1",{
-        templateUrl:'app/Event_page1.html',
-        css: 'Event_page.css'
-
-    })
-
-    .when("/Event2",{
-        templateUrl:'app/Event_page2.html',
-        css: 'Event2.css'
-    })
-
     .when("/Signout",{
         templateUrl:'app/Main_Home.html',
     })
