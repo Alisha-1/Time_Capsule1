@@ -85,11 +85,18 @@ async function getCapsulesForUser(userId) {
   return result.rows
 }
 
+async function getCapsule(capsuleId) {
+  const client = await connect()
+  const result = await client.query(`SELECT * FROM "Time_Capsule", "Users" WHERE "Time_Capsule"."CapsuleID" = ${capsuleId} AND  "Time_Capsule"."UserID" = "Users"."UserID"`)
+  return result.rows[0]
+}
+
 module.exports = {
   connect,
   checkLogin,
   createUser,
   createCapsule,
   updateCapsule,
-  getCapsulesForUser
+  getCapsulesForUser,
+  getCapsule
 }

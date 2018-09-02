@@ -19,5 +19,8 @@ app.controller('MyCapsuleController', ($scope, $rootScope, $location, $http) => 
     $location.path('/Login')
   }
 
+  $scope.navToEvent = (capsuleId) => {
+    $location.path('/Event/' + capsuleId)
+  }
   
 })

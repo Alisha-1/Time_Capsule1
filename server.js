@@ -144,6 +144,23 @@ app.get('/user/:userId/capsules', async (req, res) => {
   }
 })
 
+app.get('/capsule/:capsuleId', async (req, res) => {
+  try {
+    const capsuleId = req.params.capsuleId
+    console.log('In route /capsule/:capsuleId', capsuleId)
+    const data = await db.getCapsule(capsuleId)
+    
+    res.json({
+      result: data
+    })
+  } catch(e) {
+    console.error(e)
+    res.json({
+      error: e
+    })
+  }
+})
+
 app.get('*', function (req, res) {
   if(req.path == '/'){
     res.sendFile( __dirname + "/" + "index.html" );

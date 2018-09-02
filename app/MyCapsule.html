@@ -16,12 +16,12 @@
 	<div class="row">
 		<div class=" col-lg-4  col-md-6 col-sm-6 col-xs-12" ng-repeat="capsule in capsules">
 			<div>
-				<img ng-click="navEvent1()" class="image" src="{{ capsule.coverphoto }}" alt="image">
-				<div class=" img__overlay"><span class="glyphicon glyphicon-pencil" style=" margin:50%; color: #09A896; font-size:25px "></span></div>
+				<img class="image" src="{{ capsule.coverphoto }}" alt="image">
+				<div ng-click="navToEvent(capsule.CapsuleID)" class=" img__overlay"><span class="glyphicon glyphicon-pencil" style=" margin:50%; color: #09A896; font-size:25px "></span></div>
 			
 			<h4>{{ capsule.name }}</h5>
 			<h5>{{ capsule.description }}</h5>
-			<h5> Receive date: {{ capsule.Recieved_Date }}</h5>
+			<h5> Receive date: {{ capsule.Recieved_Date | date }}</h5>
 			</div>
 		</div>
 	</div>

@@ -43,4 +43,11 @@ app.config(function($routeProvider) {
     .when("/Signout",{
         templateUrl:'app/Main_Home.html',
     })
+    .when("/Event/:id",{
+        templateUrl:'app/Event_Page1.html',
+        controller: "EventController"
+    })
+    .when("/Event2",{
+        templateUrl:'app/Event_Page2.html',
+    })
 });
