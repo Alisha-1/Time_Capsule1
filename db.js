@@ -60,9 +60,9 @@ async function createUser(username, password, name) {
   client.release()
 }
 
-async function createCapsule({ images, date, recipient, userId }) {
+async function createCapsule({ images, date, recipient, userId, name, description, coverImage }) {
   const client = await connect()
-  const result = await client.query(`INSERT INTO "Time_Capsule" ("UserID", "Recieved_Date") VALUES ('${userId}', '${date}') RETURNING *`)
+  const result = await client.query(`INSERT INTO "Time_Capsule" ("UserID", "Recieved_Date", name, description, coverphoto) VALUES ('${userId}', '${date}', '${name}', '${description}', '${coverImage}') RETURNING *`)
   const capsuleId = result.rows[0].CapsuleID
   await client.query(`INSERT INTO "Time_Capsule-Recipient" ("CapsuleID", "Recipient_Email") VALUES ('${capsuleId}', '${recipient}')`)
 
@@ -73,9 +73,16 @@ async function createCapsule({ images, date, recipient, userId }) {
   return capsuleId
 }
 
+async function updateCapsule({ capsuleId, closeDate }) {
+  const client = await connect()
+  const result = await client.query(`UPDATE "Time_Capsule" SET closedate = '${closeDate}' WHERE "CapsuleID" = '${capsuleId}'`)
+  return result
+}
+
 module.exports = {
   connect,
   checkLogin,
   createUser,
-  createCapsule
+  createCapsule,
+  updateCapsule
 }

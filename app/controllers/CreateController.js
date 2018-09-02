@@ -1,4 +1,4 @@
-app.controller('CreateController', ($scope, $http, $rootScope) => {
+app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
 
   $scope.activePage = 0
   $scope.images = []
@@ -10,6 +10,8 @@ app.controller('CreateController', ($scope, $http, $rootScope) => {
   
   if ($rootScope.user) {
     userId = $rootScope.user.UserID
+  } else {
+    $location.path('/Login')
   }
   
   console.log('userId is', userId)
@@ -43,14 +45,46 @@ app.controller('CreateController', ($scope, $http, $rootScope) => {
       .catch(e => console.error(e))
   }
 
-  $scope.createCapsule = () => {
+  $scope.coverUpload = (files) => {
+    var fd = new FormData();
+    if ($rootScope.user)
+      fd.append('userId', userId)
+    fd.append("file", files[0]);
+    $http.post('/upload', fd, { headers: {'Content-Type': undefined } })
+      .then((resp) => {
+        $scope.tc.coverImage = resp.data.result.fileName
+      })
+      .catch(e => console.error(e))
+  }
+
+  $scope.createCapsule = (finish) => {
     $http.post('/capsule', {
       images: $scope.images,
       date: new Date($scope.tc.date.getFullYear(), $scope.tc.date.getMonth(), $scope.tc.date.getDate(), $scope.tc.time.getHours(), $scope.tc.time.getMinutes()),
       recipient: $scope.tc.recipient,
-      userId: userId
+      userId: userId,
+      description: $scope.tc.description,
+      name: $scope.tc.name,
+      coverImage: $scope.tc.coverImage
     }).then(resp => {
-      console.log(resp)
+      if (finish) {
+        $location.path('/MyCapsule')
+      } else {
+        $scope.activePage += 1
+        $rootScope.capsuleId = resp.data.capsuleId
+      }
+    }).catch(e => {
+      console.error(e)
+      $scope.errors = e
+    })
+  }
+
+  $scope.updateCapsule = () => {
+    $http.patch('/capsule', {
+      capsuleId: $rootScope.capsuleId,
+      closeDate: new Date($scope.tc.closeDate.getFullYear(), $scope.tc.closeDate.getMonth(), $scope.tc.closeDate.getDate())
+    }).then(resp => {
+      $location.path('/MyCapsule')
     }).catch(e => {
       console.error(e)
       $scope.errors = e

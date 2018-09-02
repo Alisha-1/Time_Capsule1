@@ -21,8 +21,6 @@ app.use(express.static(__dirname + '/app/styles'));
 app.use(express.static(__dirname + '/app/Images'));
 
 app.get('*', function (req, res) {
-    console.log(req.path);
-   var path = req.path;
    if(req.path == '/'){
      res.sendFile( __dirname + "/" + "index.html" );
    }else
@@ -110,6 +108,22 @@ app.post('/capsule', async (req, res) => {
   try {
     console.log('Capsule POST with', req.body)
     const capsuleId = await db.createCapsule(req.body)
+    
+    res.json({
+      capsuleId: capsuleId
+    })
+  } catch(e) {
+    console.error(e)
+    res.json({
+      error: e
+    })
+  }
+})
+
+app.patch('/capsule', async (req, res) => {
+  try {
+    console.log('Capsule PATCH with', req.body)
+    const capsuleId = await db.updateCapsule(req.body)
     
     res.json({
       capsuleId: capsuleId

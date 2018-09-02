@@ -28,13 +28,13 @@
 				
 				<div class="row>">
 					<button ng-click="navCancel()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom:20px">Cancel </button>
-						<button  ng-click="navCreate2()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Save </button>
+						<!--<button  ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Save </button>-->
 				</div>
 			</div>
 		</div>
 	</div>
-	<div>
-		<div class="container boxshadow " ng-if="activePage == 1">
+	
+	<div class="container boxshadow " ng-if="activePage == 1">
 			<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:40%">
 						40%
@@ -56,10 +56,9 @@
 					<button  ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
 				</div>	
 			</div>
-		</div>
-	</div>	
-	<div>
-		<div class="container boxshadow" ng-if="activePage == 2">	
+	</div>
+	
+	<div class="container boxshadow" ng-if="activePage == 2">	
 			<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:60%">
 						60%
@@ -73,18 +72,17 @@
 					<textarea  class="resizetextbox" rows="5"  ng-model="images[imageIndex].description" placeholder="description"  maxlength="100"></textarea>
 				</div>
 				<div class="row">
-					<button ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
-					<button ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
-					<button ng-click="uploadMore()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Upload More </button>
+					<button ng-click="previousPage()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+					<button ng-click="nextPage()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+					<button ng-click="uploadMore()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Upload More </button>
 				</div>
 			</div>
-		</div>
 	</div>
-	<div>
-		<div class="container boxshadow center" ng-if="activePage == 3">
+	
+	<div class="container boxshadow center" ng-if="activePage == 3">
 			<div class="progress">
 				<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-					80%
+					70%
 					</div>
 			</div>
 				
@@ -106,26 +104,107 @@
 					<button ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
 				</div>	
 			</div>
+	</div>
+	
+	<div class="container boxshadow center" ng-if="activePage == 4">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:95%">
+				80%
+			</div>
+		</div>
+		<div class="center">
+			<div>
+				<h4 class="fs-title" style="margin-top: 20px" >Add recipient</h4>
+				<h5 class="fs-subtitle" style="margin-bottom: 20px">Add their email addresses below who will recieve the time capsule </h5>	
+				<input ng-model="tc.recipient" class="fillinbox" type="text" placeholder="john@gmaial.com, sam@gmail.com"  style="width: 370px;  height: 30px;" />					
+			</div>
+			<div class="row">
+				<button ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+				<button  ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+			</div>
 		</div>
 	</div>
-	<div>
-			<div class="container boxshadow center" ng-if="activePage == 4">
-					<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:95%">
-							95%
-						</div>
-					</div>
-					<div class="center">
-						<div>
-							<h4 class="fs-title" style="margin-top: 20px" >Add recipient</h4>
-							<h5 class="fs-subtitle" style="margin-bottom: 20px">Add their email addresses below who will recieve the time capsule </h5>	
-							<input ng-model="tc.recipient" class="fillinbox" type="text" placeholder="john@gmaial.com, sam@gmail.com"  style="width: 370px;  height: 30px;" />					
-						</div>
-						<div class="row">
-							<button ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
-							<button  ng-click="createCapsule()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
-						</div>
-					</div>
+	
+	<div class="container boxshadow center" ng-if="activePage == 5">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:30%">
+				90%
+    		</div>
+		</div>
+	   <div class="center " >
+				<div>
+					<h4 class="fs-title">Add detail</h4>
+    			<h5 class="fs-subtitle">Add some details about the time capsule </h5>
+  			  <input ng-model="tc.name" class="resizetextbox" type="text" name="name" placeholder="title" />
+				</div>
+				<div>
+   			  <textarea ng-model="tc.description" class="resizetextbox" rows="5"  name="description" placeholder="description"  maxlength="100" ></textarea>
+				</div>
+				<div id="upload" class="row" ng-if="!tc.coverImage">
+					<button class="btn btn-info button" style="background-color : #0E1D37; margin-top: 17px; margin-bottom: 200px;" onclick="document.getElementById('fileInput2').click()"> Upload  </button>
+					<input type="file" class="file-input" id="fileInput2" onchange="angular.element(this).scope().coverUpload(this.files)" />
+				</div>
+				<div id="upload" class="row" ng-if="tc.coverImage">
+					<img style="height: 340px; width:620px;"" ng-src="{{ tc.coverImage }}" />
+				</div>
+		   	<div class="row">
+					<button ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+   			 	<button  ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+		    </div>
+	  </div>
+	</div>
+
+	<div class="container boxshadow " ng-if="activePage == 6">
+		<div>
+			<div class="progress-bar" style="width:70%"></div>
+		</div>
+		<div class="center " >	
+			<div>
+				<h4 class="fs-title">Choose an option </h4>
+				<h5 class="fs-subtitle">Collaborate with people to create time capsule</h5>
+			</div>			 
+			<div class="row">
+				<button ng-click="createCapsule(true)" class="btn btn-dark col-md-6" style="margin-top: 50px; margin-bottom: 20px; background-color:#02181E; color:white"> Done</button>	
+				<button  ng-click="createCapsule()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"> Collaborate </button>
+			</div>	
+		</div>
+	</div>
+
+	<div class="container boxshadow center" ng-if="activePage == 7">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+				70%
 			</div>
+		</div>
+		<div class="center " >
+			<div>
+				<h4 class="fs-title" style="margin-top: 20px" >Invite friends</h4>
+				<h5 class="fs-subtitle" style="margin-bottom: 20px">Copy this link to send to your friends</h5>											   
+				<a href ="https://www.w3schools.com/howto/default.asp">https://localhost:5000/{{ capsuleId }}</a> 		
+			</div> 
+			<div class="row">
+				<button  ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+				<button  ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+			</div>    
+		</div>
+	</div>
+
+	<div class="container boxshadow center" ng-if="activePage == 8">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+				100%
+			</div>
+		</div>
+			<div class="center" >
+			<div>
+				<h4 class="fs-title" style="margin-top: 20px" >Close date</h4>
+				<h5 class="fs-subtitle" style="margin-bottom: 20px">Set when to close the time capsule to the collaborators</h5>	
+				<input class="newinput" type="date"  ng-model="tc.closeDate" />		
+			</div> 
+			<div class="row">
+				<button  ng-click="createCapsule()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+				<button ng-click="updateCapsule()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Done </button>
+			</div>			
+		</div>
 	</div>
 </div>
