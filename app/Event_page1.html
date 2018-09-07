@@ -1,20 +1,5 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-		
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	
 
 
-</head>
 
 <body>
 		
@@ -23,21 +8,18 @@
 	<div class="image">
 
 		<img class=" Image " src="{{ capsule.coverphoto }}"alt="First slide" style=" width: 100%; height: 400px; margin-top: -20px; " </img>
-   
-		
+		<button  ng-click="" class="  btn btn-info margin-top " onmouseover="Myf()"  style="position: absolute;  margin-top: -350px; right: 60px;" >Upload </a></button>
+
     	<h1 class="left"><span>{{ capsule.name }}</span></h1>
-		
 		
 		
     </div>
 		
 	
     <ul class="nav nav-tabs nav-justified">
-  		<li class="active">About</li>
-		<li ng-click="navEvent2()" >Posts</li>
+  		<li class="active nav-item"><a class="nav-link" >About</a></li>
+		<li class="nav-item" ><a class="nav-link" ng-click="navEvent2()">Posts</a></li>
 	</ul>
-
-
 
 
      
@@ -76,4 +58,3 @@
 </div>
 	
 </body>
-</html>
