@@ -5,7 +5,7 @@
     <h1 class="left"><span>{{ capsule.name }}</span></h1>
   </div>
 	<ul class="nav nav-tabs nav-justified">
-		<li class="nav-item {{ activeTab == 1 ? 'active' : '' }}"><a class="nav-link" ng-click="setActiveTab(2)">About</a></li>
+		<li class="nav-item {{ activeTab == 1 ? 'active' : '' }}"><a class="nav-link" ng-click="setActiveTab(1)">About</a></li>
 		<li class="nav-item {{ activeTab == 2 ? 'active' : '' }}" ><a class="nav-link" ng-click="setActiveTab(2)">Posts</a></li>
 	</ul>
   <div ng-if="activeTab == 1">
