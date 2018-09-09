@@ -1,6 +1,12 @@
 app.controller('EventController', ($scope, $http, $routeParams) => {
   var id = $routeParams.id
 
+  $scope.activeTab = 1
+
+  $scope.setActiveTab = (n) => {
+    $scope.activeTab = n
+  }
+
   $http.get(`/capsule/${id}`)
     .then(resp => {
       if ('error' in resp.data) {

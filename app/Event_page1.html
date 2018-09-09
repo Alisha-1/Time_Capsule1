@@ -1,29 +1,14 @@
-
-
-
-<body>
-		
-<div class="container"  >
-	
+<div class="container" >	
 	<div class="image">
-
-		<img class=" Image " src="{{ capsule.coverphoto }}"alt="First slide" style=" width: 100%; height: 400px; margin-top: -20px; " </img>
-		<button  ng-click="" class="  btn btn-info margin-top " onmouseover="Myf()"  style="position: absolute;  margin-top: -350px; right: 60px;" >Upload </a></button>
-
-    	<h1 class="left"><span>{{ capsule.name }}</span></h1>
-		
-		
-    </div>
-		
-	
-    <ul class="nav nav-tabs nav-justified">
-  		<li class="active nav-item"><a class="nav-link" >About</a></li>
-		<li class="nav-item" ><a class="nav-link" ng-click="navEvent2()">Posts</a></li>
+		<img class=" Image " src="{{ capsule.coverphoto }}" alt="First slide" style=" width: 100%; height: 400px; margin-top: -20px; " />
+		<button  btn btn-info margin-top " onmouseover="Myf()"  style="position: absolute;  margin-top: -350px; right: 60px;" >Upload </a></button>
+    <h1 class="left"><span>{{ capsule.name }}</span></h1>
+  </div>
+	<ul class="nav nav-tabs nav-justified">
+		<li class="nav-item {{ activeTab == 1 ? 'active' : '' }}"><a class="nav-link" ng-click="setActiveTab(2)">About</a></li>
+		<li class="nav-item {{ activeTab == 2 ? 'active' : '' }}" ><a class="nav-link" ng-click="setActiveTab(2)">Posts</a></li>
 	</ul>
-
-
-     
-  <div  >
+  <div ng-if="activeTab == 1">
 		<br><h4>Description</h4>
 		<p>{{ capsule.description }}</p>
 		
@@ -39,22 +24,26 @@
 	    <br><br><h4 style="display:inline">For:</h4>
 		<p style="display:inline"> Name of person goes here</p>
 		
-		
 		<br><br><h4 style="display:inline">Members:</h4> 
 		<p style="display:inline">4</p>
 	    <br><br>
 	
  		<div>
-  			<span class="dot"></span>
+  		<span class="dot"></span>
  			<span class="dot"></span>
-  			<span class="dot"></span>
+  		<span class="dot"></span>
  			<span class="dot"></span>
 		</div>
+	</div>
+
+	<div ng-if="activeTab == 2">
+		<div class="text" ng-repeat="image in capsule.images">
+			<div class="fakeimg img">
+				<img ng-src="{{ image.URL }}" />
+			</div>
+			<div class="profilepic" style= "float :left" ></div>
+			<div><p style= " margin-left: 60px ">{{ image.Description }}</p></div>
+			<h5 style="float: right; color: #21BDC1"><span class="glyphicon glyphicon-pencil" ></span> Edit </h5>
+			<br><br><br>
+		</div>	
 </div>
-
-
-	</div>	
-
-</div>
-	
-</body>

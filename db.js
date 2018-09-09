@@ -87,8 +87,12 @@ async function getCapsulesForUser(userId) {
 
 async function getCapsule(capsuleId) {
   const client = await connect()
-  const result = await client.query(`SELECT * FROM "Time_Capsule", "Users" WHERE "Time_Capsule"."CapsuleID" = ${capsuleId} AND  "Time_Capsule"."UserID" = "Users"."UserID"`)
-  return result.rows[0]
+  const tc = await client.query(`SELECT * FROM "Time_Capsule", "Users" WHERE "Time_Capsule"."CapsuleID" = ${capsuleId} AND  "Time_Capsule"."UserID" = "Users"."UserID"`)
+  const images = await client.query(`SELECT * FROM "Content" WHERE "CapsuleID" = ${capsuleId}`)
+
+  let result = tc.rows[0]
+  result['images'] = images.rows
+  return result
 }
 
 module.exports = {
