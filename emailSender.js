@@ -17,13 +17,13 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-// Check if its time
+// Check after every 5 mins if any reciepient is ready
 console.log(`Waiting for ${POLLING_TIME / 60 / 1000} minutes`)
-// setInterval(async () => {
-//   await run()
-// }, POLLING_TIME)
+setInterval(async () => {
+  await run()
+}, POLLING_TIME)
 
-run()
+//run()
 
 async function run() {
   try {
