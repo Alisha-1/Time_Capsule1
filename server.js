@@ -6,6 +6,11 @@ var AWS = require('aws-sdk')
 var s3 = new AWS.S3()
 var fs = require('fs')
 
+AWS.config = new AWS.Config()
+AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID
+AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+AWS.config.region = "us-east-1"
+
 var BASE_S3_URL = 'https://s3.amazonaws.com/timecapsule-alisha'
 
 var bodyParser = require('body-parser')
