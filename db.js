@@ -1,5 +1,6 @@
 const { Pool } = require('pg')
 const { parse } = require('pg-connection-string')
+var passwordHash = require('password-hash');
 
 const pool = new Pool(
   parse(process.env.DATABASE_URL || 'postgres://femodzrnsqafnc:7e9011a13dc74d0ac54ac3776ebcea139197010fed339cc9f57686a16f5daf43@ec2-54-247-123-231.eu-west-1.compute.amazonaws.com:5432/d71aserb3ek998?ssl=true' || 'postgres://localhost:5432/timecapsule')
@@ -19,7 +20,9 @@ async function checkLogin(username, password) {
     if (result) {
       if (result.rows) {
         if (result.rows[0]) {
-          if (result.rows[0].Password == password) {
+          var login = passwordHash.verify(password, result.rows[0].Password);
+
+          if (login) {
             console.log('Login completed')
             if (client)
               client.release()
