@@ -1,4 +1,4 @@
-app.controller("myCtrl", function($scope, $http, $location, $route, $rootScope) {
+angular.module('myApp').controller("myCtrl", function($scope, $http, $location, $route, $rootScope) {
   $scope.totalData = [];
   $scope.displayBtn = false;
   //$scope.login = true;
