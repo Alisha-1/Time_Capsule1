@@ -44,10 +44,10 @@ app.config(function($routeProvider) {
         templateUrl:'app/Main_Home.html',
     })
     .when("/Event/:id",{
-        templateUrl:'app/Event_Page1.html',
+        templateUrl:'app/Event_page1.html',
         controller: "EventController"
     })
     .when("/Event2",{
-        templateUrl:'app/Event_Page2.html',
+        templateUrl:'app/Event_page2.html',
     })
 });
