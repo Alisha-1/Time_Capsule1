@@ -63,6 +63,23 @@ async function createUser(username, password, name) {
   client.release()
 }
 
+
+
+
+  
+
+
+
+
+
+
+async function event_uploadMore({images,capsuleId}) {
+  const client = await connect()
+  images.forEach(async image => {
+    await client.query(`INSERT INTO "Content" ("CapsuleID", "Description", "URL") VALUES ('${capsuleId}', '${image.description}', '${image.fileName}')`)
+})
+}
+
 async function createCapsule({ images, date, recipient, userId, name, description, coverImage }) {
   const client = await connect()
   const result = await client.query(`INSERT INTO "Time_Capsule" ("UserID", "Recieved_Date", name, description, coverphoto) VALUES ('${userId}', '${date}', '${name}', '${description}', '${coverImage}') RETURNING *`)
@@ -105,5 +122,6 @@ module.exports = {
   createCapsule,
   updateCapsule,
   getCapsulesForUser,
+  event_uploadMore,
   getCapsule
 }

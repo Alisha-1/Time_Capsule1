@@ -11,6 +11,7 @@ var GoogleSignIn = require("google-sign-in");
 //   "531816459848-26tnvqqaff0ieedn4dp4f2hii3fq1b6m.apps.googleusercontent.com"
 // );
 
+
 AWS.config = new AWS.Config();
 AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -131,6 +132,22 @@ app.post("/capsule", async (req, res) => {
   try {
     console.log("Capsule POST with", req.body);
     const capsuleId = await db.createCapsule(req.body);
+
+    res.json({
+      capsuleId: capsuleId
+    });
+  } catch (e) {
+    console.error(e);
+    res.json({
+      error: e
+    });
+  }
+});
+
+app.post("/event_uploadMore",async(req, res) =>{
+  console.log(req.body);
+  try {
+    const capsuleId = await db.event_uploadMore(req.body);
 
     res.json({
       capsuleId: capsuleId

@@ -45,9 +45,15 @@ app.config(function($routeProvider) {
     })
     .when("/Event/:id",{
         templateUrl:'app/Event_page1.html',
-        controller: "EventController"
+        controller: "EventController",
     })
     .when("/Event2",{
         templateUrl:'app/Event_page2.html',
+    })
+
+    .when("/EventUploadMore",{
+        templateUrl:'app/Event_UploadMore.html',
+        controller: "Event_UploadMoreController",
+        css: 'Create.css'
     })
 });
