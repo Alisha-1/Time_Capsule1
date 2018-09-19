@@ -38,6 +38,7 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
     $http.post('/upload', fd, { headers: {'Content-Type': undefined } })
       .then((resp) => {
         $scope.images.push(resp.data.result)
+        
         $scope.activePage += 1
         $scope.currentImageURL = $scope.images[$scope.imageIndex].fileName
         console.log($scope.currentImageURL, $scope.images, $scope.imageIndex)
@@ -58,6 +59,7 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
   }
 
   $scope.createCapsule = (finish) => {
+    
     $http.post('/capsule', {
       images: $scope.images,
       date: new Date($scope.tc.date.getFullYear(), $scope.tc.date.getMonth(), $scope.tc.date.getDate(), $scope.tc.time.getHours(), $scope.tc.time.getMinutes()),
@@ -71,6 +73,7 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
         $location.path('/MyCapsule')
       } else {
         $scope.activePage += 1
+        // Create capsuleID for timecapsule
         $rootScope.capsuleId = resp.data.capsuleId
       }
     }).catch(e => {

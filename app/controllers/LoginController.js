@@ -5,6 +5,22 @@ angular.module('myApp')
       password: ''
     }
 
+    // $scope.gLogin = function(){
+    //   AuthService.googlelogin()
+    //   .then((user) => {
+    //     if ('error' in user) {
+    //       $scope.errors = user.error
+    //     } else {
+    //       debugger;
+    //       $location.path('/MyCapsule')
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.error('Could not login', e)
+    //     $scope.errors = e
+    //   })
+    // }
+
     $scope.login = function() {
       AuthService.login($scope.credentials)
         .then((user) => {

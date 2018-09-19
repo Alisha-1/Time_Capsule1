@@ -19,7 +19,9 @@ app.controller('MyCapsuleController', ($scope, $rootScope, $location, $http) => 
     $location.path('/Login')
   }
 
-  $scope.navToEvent = (capsuleId) => {
+  $scope.navToEvent = (capsuleId) => {  
+      //Go to page Event with CapusleId of timecapsule 
+      $rootScope.capsuleId = capsuleId;
     $location.path('/Event/' + capsuleId)
   }
   
