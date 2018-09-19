@@ -7,6 +7,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<style>
+  .text{
+    font-size: 18px;
+  }
+</style>
 
 <link rel="stylesheet" ng-href="{{css}}">
 
@@ -38,20 +43,20 @@
         <div class="collapse navbar-collapse" id="myNavbar" style="color:white">
           <ul class="nav navbar-nav navbar-right">
             <li ng-click="navCreate1()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-time"></span> Create</li>
+              <span class="glyphicon glyphicon-time text"></span> Create</li>
             <li class="active" ng-click="navMyCapsule()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-home"></span> MyCapsules</li>
+              <span class="glyphicon glyphicon-home text"></span> MyCapsules</li>
             <li ng-click="navSignout()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-user" ></span> Sign out</li>
+              <span class="glyphicon glyphicon-user text" ></span> Sign out</li>
             <li class="active" ng-click="home()" ng-if="!loggedIn">
-              <span class="glyphicon glyphicon-home">Home</span>
+              <span class="glyphicon glyphicon-home text">Home</span>
             </li >
             <li ng-click="signUp()" ng-if="!loggedIn">
-              <span class="glyphicon glyphicon-user">Sign Up</span>
+              <span class="glyphicon glyphicon-user text">Sign Up</span>
             </li>
             <li ng-click="logIn()" ng-if="!loggedIn">
 
-              <span class="glyphicon glyphicon-log-in">Login</span>
+              <span class="glyphicon glyphicon-log-in text">Login</span>
             </li>
           </ul>
 
