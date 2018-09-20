@@ -93,15 +93,15 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
     })
   }
 
-  $scope.nextPage =() => {
-    var GivenDate =  $scope.date;
-    var CurrentDate = new Date();
-    GivenDate = new Date(GivenDate);
+//   $scope.nextPage =() => {
+//     var GivenDate =  $scope.date;
+//     var CurrentDate = new Date();
+//     GivenDate = new Date(GivenDate);
   
-    if(GivenDate < CurrentDate){
-      throw('Enter valid date i.e current date or date more than current date');
-    }
-  }
+//     if(GivenDate < CurrentDate){
+//       throw('Enter valid date i.e current date or date more than current date');
+//     }
+//   }
 
 })
 
