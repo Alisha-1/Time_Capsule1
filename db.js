@@ -65,14 +65,6 @@ async function createUser(username, password, name) {
 
 
 
-
-  
-
-
-
-
-
-
 async function event_uploadMore({images,capsuleId}) {
   const client = await connect()
   images.forEach(async image => {
