@@ -8,8 +8,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <style>
-  .text{
+  .text1{
     font-size: 18px;
+    margin-left: 23px;
   }
 </style>
 
@@ -43,20 +44,20 @@
         <div class="collapse navbar-collapse" id="myNavbar" style="color:white">
           <ul class="nav navbar-nav navbar-right">
             <li ng-click="navCreate1()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-time text"></span> Create</li>
+              <span class="glyphicon glyphicon-time text1"></span>Create </li> 
             <li class="active" ng-click="navMyCapsule()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-home text"></span> MyCapsules</li>
+              <span class="glyphicon glyphicon-home text1"></span>MyCapsules  </li>
             <li ng-click="navSignout()" ng-if="loggedIn">
-              <span class="glyphicon glyphicon-user text" ></span> Sign out</li>
+              <span class="glyphicon glyphicon-user text1" ></span>Sign out </li>
             <li class="active" ng-click="home()" ng-if="!loggedIn">
-              <span class="glyphicon glyphicon-home text">Home</span>
+              <span class="glyphicon glyphicon-home text1">Home  </span>
             </li >
             <li ng-click="signUp()" ng-if="!loggedIn">
-              <span class="glyphicon glyphicon-user text">Sign Up</span>
+              <span class="glyphicon glyphicon-user text1">SignUp </span>
             </li>
             <li ng-click="logIn()" ng-if="!loggedIn">
 
-              <span class="glyphicon glyphicon-log-in text">Login</span>
+              <span class="glyphicon glyphicon-log-in text1"> Login  </span>
             </li>
           </ul>
 
