@@ -3,11 +3,13 @@
 	
 
 	.fakeimg {
-    	background-color: #aaa;
+    	/* background-color: #aaa;
     	padding: 20px;
 		margin-top: 40px;
 		margin-bottom:20px;
-		height:450px; 
+		height:450px;  */
+		position: relative; 
+		width: 100%; /* for IE 6 */
 	}
 
 	.img {
@@ -102,7 +104,7 @@ h1 span.spacer { padding:0 5px; } /* to pad the background color of text to make
 	}
 	
 		 .fakeimg{
-		width:450px;
+		height:800px;
 	}
 	
 	.text{	
@@ -129,7 +131,7 @@ h1 span.spacer { padding:0 5px; } /* to pad the background color of text to make
 	}
 	
 	 .fakeimg{
-		width:600px;
+		height:450px;
 	}
 	
 	.text{	
@@ -144,13 +146,13 @@ h1 span.spacer { padding:0 5px; } /* to pad the background color of text to make
 /* For desktop: */
 @media only screen and (min-width: 768px){
 	.Image {
-    flex: 50%;
-   	 max-width: 100%;
+      flex: 50%;
+   	  max-width: 100%;
   }
 	
 	 .fakeimg{
-		width:700px;
-		padding: 5px;
+	   flex: 50%;
+   	   max-width: 100%;
 	}
 	
 	.text{	
