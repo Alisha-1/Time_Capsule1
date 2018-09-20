@@ -138,6 +138,10 @@ $scope.$on('$locationChangeSuccess', function(//EDIT: remove params for jshint )
     $location.path("/Event2");
   };
 
+  $scope.navEventUploadMore= function() {
+    $location.path("/EventUploadMore");
+  };
+
   $scope.navSignout = function() {
     $rootScope.loggedIn = false;
     $scope.signOut = true;

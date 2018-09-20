@@ -23,7 +23,7 @@
 			</div>
 			<div id="buttons" class="row" style="display: none">
 				<div class="row>">
-					<p class="center" style="height: 340px; width:620px; background-color: darkgray;"</p>
+					<p class="center" style="height: 340px; width:620px; background-color: darkgray; "></p> 
 				</div>
 				
 				<div class="row>">
@@ -47,8 +47,7 @@
 				</div>
 					
 				<div class="row>">
-					<img style="height: 340px; width:620px;"" ng-src="{{ currentImageURL }}" />
-					<!-- <p class="center" style="height: 340px; width:620px; background-color: darkgray;"></p> -->
+					<img style="height: 340px; width:620px;" ng-src="{{ currentImageURL }}" />
 				</div>
 			
 				<div class="row">
@@ -90,18 +89,26 @@
 				<div>
 					<h4 class="fs-title" style="margin-top: 20px" >Set date</h4>
 					<h5 class="fs-subtitle" style="margin-bottom: 20px">Set when to open the time capsule</h5>
-					<input class="newinput" type="date" ng-model="tc.date" />
+					<input class="newinput" id="date" type="date" ng-model="tc.date" />
 				</div>
+
+				<!-- <div id="msg1" style="visibility: hidden">
+					<h5 style="color:red">* Enter valid date i.e current date or date more than current date</h5>
+				</div> -->
 					
 				<div >
 					<h4 class="fs-title" style="margin-top: 40px">Set time</h4>	 
 					<h5 class="fs-subtitle" style="margin-bottom: 20px"> Set what time to open the time capsule</h5>
-					<input class="newinput" type="time" ng-model="tc.time" />
+					<input class="newinput"  id="time" type="time" ng-model="tc.time" />
 				</div>
 
-				<div class="row">
+				<!-- <div id="msg2">
+					<h5 style="color:red">* Enter valid time i.e time more than current date</h5>
+				</div> -->
+
+				<div class="row" ><!-- next button there is click="compareDate() to compare date and time to current one -->
 					<button ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
-					<button ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+					<button ng-click="nextPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px" onchange="compareDate()"  > Next </button>
 				</div>	
 			</div>
 	</div>
@@ -208,3 +215,4 @@
 		</div>
 	</div>
 </div>
+
