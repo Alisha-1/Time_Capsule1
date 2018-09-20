@@ -59,7 +59,6 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
   }
 
   $scope.createCapsule = (finish) => {
-    
     $http.post('/capsule', {
       images: $scope.images,
       date: new Date($scope.tc.date.getFullYear(), $scope.tc.date.getMonth(), $scope.tc.date.getDate(), $scope.tc.time.getHours(), $scope.tc.time.getMinutes()),
@@ -93,4 +92,17 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
       $scope.errors = e
     })
   }
+
+  $scope.nextPage =() => {
+    var GivenDate =  $scope.date;
+    var CurrentDate = new Date();
+    GivenDate = new Date(GivenDate);
+  
+    if(GivenDate < CurrentDate){
+      throw('Enter valid date i.e current date or date more than current date');
+    }
+  }
+
 })
+
+
