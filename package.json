@@ -5,7 +5,7 @@
   "author": "praveen",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently\ "node server.js" \ "emailSender.js" "
+    "start": "concurrently \"node server.js\" \"emailSender.js\""
   },
   "Procfile": {
     "web": "node server.js"
