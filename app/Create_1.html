@@ -147,6 +147,8 @@
 				<div>
    			  <textarea ng-model="tc.description" class="resizetextbox" rows="5"  name="description" placeholder="description"  maxlength="100" ></textarea>
 				</div>
+		   		
+		                <h5 class="fs-title">Upload a cover photo</h5>
 				<div id="upload" class="row" ng-if="!tc.coverImage">
 					<button class="btn btn-info button" style="background-color : #0E1D37; margin-top: 17px; margin-bottom: 200px;" onclick="document.getElementById('fileInput2').click()"> Upload  </button>
 					<input type="file" class="file-input" id="fileInput2" onchange="angular.element(this).scope().coverUpload(this.files)" />
