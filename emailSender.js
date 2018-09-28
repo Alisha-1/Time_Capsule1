@@ -76,12 +76,12 @@ async function run() {
 
 function sendEmail(emailAddress, capsuleId) {
 
-  const mailOptions = {
-    from: 'Timecapsule <' + process.env.GMAIL_USER + '>', // sender address
-    to: emailAddress, // list of receivers
-    subject: 'Your timecapsule is ready', // Subject line
-    text: `Click here to access your time capsule ${CAPSULE_URL}/${capsuleId}`, // plaintext body
-  };
+//   const mailOptions = {
+//     from: 'Timecapsule <' + process.env.GMAIL_USER + '>', // sender address
+//     to: emailAddress, // list of receivers
+//     subject: 'Your timecapsule is ready', // Subject line
+//     text: `Click here to access your time capsule ${CAPSULE_URL}/${capsuleId}`, // plaintext body
+//   };
   
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, function(error, info){
