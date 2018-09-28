@@ -1,9 +1,9 @@
 angular.module('myApp')
   .controller('RegistrationController', ($scope, AuthService, $rootScope, $location) => {
     $scope.details = {
-      username: '',
+      email: '',
+      name: '',      
       password: '',
-      name: '',
       password2: ''
     }
 

@@ -33,7 +33,7 @@ angular.module('myApp')
             $rootScope.loggedIn = true
             $location.path('/MyCapsule')
           }
-        })
+        }) 
         .catch((e) => {
           console.error('Could not login', e)
           $scope.errors = e

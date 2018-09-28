@@ -25,6 +25,7 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
     $scope.activePage -= 1
   }
 
+  //UploadMore
   $scope.uploadMore = () => {
     $scope.imageIndex += 1
     $scope.activePage = 0
@@ -33,13 +34,17 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
   $scope.fileUpload = (files) => {
     var fd = new FormData();
     if ($rootScope.user)
+    // Append to userId and append in file array
       fd.append('userId', userId)
     fd.append("file", files[0]);
+    //Go to server.js /upload
     $http.post('/upload', fd, { headers: {'Content-Type': undefined } })
       .then((resp) => {
+        //Add result ie filename to array of images
         $scope.images.push(resp.data.result)
         
         $scope.activePage += 1
+        //Image URL
         $scope.currentImageURL = $scope.images[$scope.imageIndex].fileName
         console.log($scope.currentImageURL, $scope.images, $scope.imageIndex)
       })
@@ -49,16 +54,21 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
   $scope.coverUpload = (files) => {
     var fd = new FormData();
     if ($rootScope.user)
+   // Append to userId and append in file array
       fd.append('userId', userId)
     fd.append("file", files[0]);
+      //Go to server.js /upload
+
     $http.post('/upload', fd, { headers: {'Content-Type': undefined } })
       .then((resp) => {
+        //Cover Image - result ie filename
         $scope.tc.coverImage = resp.data.result.fileName
       })
       .catch(e => console.error(e))
   }
 
   $scope.createCapsule = (finish) => {
+    //Go to server.js /capusle
     $http.post('/capsule', {
       images: $scope.images,
       date: new Date($scope.tc.date.getFullYear(), $scope.tc.date.getMonth(), $scope.tc.date.getDate(), $scope.tc.time.getHours(), $scope.tc.time.getMinutes()),
@@ -82,6 +92,7 @@ app.controller('CreateController', ($scope, $http, $rootScope, $location) => {
   }
 
   $scope.updateCapsule = () => {
+    //Go to server.js patch /capsule
     $http.patch('/capsule', {
       capsuleId: $rootScope.capsuleId,
       closeDate: new Date($scope.tc.closeDate.getFullYear(), $scope.tc.closeDate.getMonth(), $scope.tc.closeDate.getDate())
