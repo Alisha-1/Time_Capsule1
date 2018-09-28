@@ -6,6 +6,8 @@ angular.module('myApp')
     }
 
   //Google Login
+  var windowOpened;
+  
   $scope.glogin = function() {
     debugger;
     $http.get("url").then(function(response) {
