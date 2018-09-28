@@ -1,5 +1,5 @@
 angular.module('myApp')
-  .controller('LoginController', ($scope, AuthService, $rootScope, $location) => {
+  .controller('LoginController', ($scope, AuthService, $http, $rootScope, $location) => {
     $scope.credentials = {
       username: '',
       password: ''
