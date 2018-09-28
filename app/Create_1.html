@@ -10,6 +10,7 @@
 				<br><h4 >Upload <b style="color: #21BDC1">multiple</b> pictures or videos from gallery</h4>
 			</div> 
 			<div id="upload"class="row">
+				<!-- Go to create Contoller to function fileUpload -->
 				<button class="btn btn-info button" style="background-color : #0E1D37; margin-top: 17px; margin-bottom: 200px;" onclick="document.getElementById('fileInput').click()"> Upload  </button>
 				<input type="file" class="file-input" id="fileInput" onchange="angular.element(this).scope().fileUpload(this.files)" />
 			</div>
@@ -73,6 +74,7 @@
 				<div class="row">
 					<button ng-click="previousPage()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
 					<button ng-click="nextPage()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Next </button>
+					<!-- Go to CreateController uploadMore function -->
 					<button ng-click="uploadMore()" class="btn btn-info button col-md-4" style="margin-top: 50px; margin-bottom: 20px"  > Upload More </button>
 				</div>
 			</div>
@@ -150,6 +152,7 @@
 		   		
 		                <h5 class="fs-title">Upload a cover photo</h5>
 				<div id="upload" class="row" ng-if="!tc.coverImage">
+					<!-- Upload cover photo go to CreateController-->
 					<button class="btn btn-info button" style="background-color : #0E1D37; margin-top: 17px; margin-bottom: 200px;" onclick="document.getElementById('fileInput2').click()"> Upload  </button>
 					<input type="file" class="file-input" id="fileInput2" onchange="angular.element(this).scope().coverUpload(this.files)" />
 				</div>
@@ -212,6 +215,7 @@
 			</div> 
 			<div class="row">
 				<button  ng-click="previousPage()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Back</button>
+				<!-- updateCapsule go to CreateController-->
 				<button ng-click="updateCapsule()" class="btn btn-info button col-md-6" style="margin-top: 50px; margin-bottom: 20px"  > Done </button>
 			</div>			
 		</div>
