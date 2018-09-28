@@ -7,6 +7,7 @@ var s3 = new AWS.S3();
 var fs = require("fs");
 var passwordHash = require("password-hash");
 var GoogleSignIn = require("google-sign-in");
+const { google } = require("googleapis");
 // var project = new GoogleSignIn.Project(
 //   "531816459848-26tnvqqaff0ieedn4dp4f2hii3fq1b6m.apps.googleusercontent.com"
 // );
@@ -65,11 +66,11 @@ app.post("/login", async (req, res) => {
 //   });
 
 app.post("/register", async (req, res) => {
+  //Store the request variables filled by user into new variable
   const username = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
   const password2 = req.body.password2;
-  //const hashedPassword;
 
   try {
     if (password != password2) {
@@ -77,6 +78,7 @@ app.post("/register", async (req, res) => {
         error: "Password does not match"
       });
     } else {
+       //const hashedPassword;
       const hashedPassword = passwordHash.generate(password); //hashing
       const user = await db.createUser(username, hashedPassword, name);
       res.json({
@@ -103,7 +105,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
       });
     } else {
       var base64data = new Buffer(data, "binary");
-
+      //Store image in AWS 
       s3.putObject(
         {
           Bucket: "timecapsule-alisha",
@@ -111,6 +113,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
           Body: base64data,
           ACL: "public-read"
         },
+
         (err, resp) => {
           if (err) {
             console.error(err);
@@ -231,5 +234,35 @@ async function start() {
     console.error(e);
   }
 }
+
+//Google sign in
+
+const oauth2Client = new google.auth.OAuth2(
+  "538032522253-gp3nmii7d59jka3ub4p6urtoj3kt2c46.apps.googleusercontent.com",
+  "pP816EXr_M-FgeVsBg39V9i3",
+  "https://mytimecapsule.herokuapp.com/#/MyCapsule"
+);
+
+// generate a url that asks permissions for Google+ and Google Calendar scopes
+const scopes = ["https://www.googleapis.com/auth/gmail.readonly"];
+
+const url = oauth2Client.generateAuthUrl({
+  // 'online' (default) or 'offline' (gets refresh_token)
+  access_type: "offline",
+
+  // If you only need one scope you can pass it as a string
+  scope: scopes
+});
+
+app.get("/url", function(req, res) {
+  res.send(url);
+});
+app.get("/token", function(req, res) {
+  var code = req.query.code;
+  oauth2Client.getToken(code, function(err, tokens) {
+    oauth2Client.setCredentials(tokens);
+    res.send(tokens);
+  });
+});
 
 start();
