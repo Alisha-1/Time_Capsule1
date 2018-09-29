@@ -1,7 +1,6 @@
 const CAPSULE_URL = process.env.CAPSULE_URL
-// const POLLING_TIME = 5 * 60 * 1000 // 5 mins
-const POLLING_TIME = 2*60000 // 5 mins
-//const RUN_TIME = 2 * 60 * 1000 // 1 Hour
+const POLLING_TIME = 2 * 60 * 1000 // 5 mins
+//const RUN_TIME = 60 * 60 * 1000 // 1 Hour
 const nodemailer = require('nodemailer')
 const { Pool } = require('pg')
 const { parse } = require('pg-connection-string')
@@ -20,7 +19,6 @@ const transporter = nodemailer.createTransport({
 
 // Check after every 5 mins if any reciepient is ready
 console.log(`Waiting for ${POLLING_TIME / 60 / 1000} minutes`)
-//setInterval repeats function, time
 setInterval(async () => {
   await run()
 }, POLLING_TIME)
@@ -76,12 +74,12 @@ async function run() {
 
 function sendEmail(emailAddress, capsuleId) {
 
-//   const mailOptions = {
-//     from: 'Timecapsule <' + process.env.GMAIL_USER + '>', // sender address
-//     to: emailAddress, // list of receivers
-//     subject: 'Your timecapsule is ready', // Subject line
-//     text: `Click here to access your time capsule ${CAPSULE_URL}/${capsuleId}`, // plaintext body
-//   };
+  const mailOptions = {
+    from: 'Timecapsule <' + process.env.GMAIL_USER + '>', // sender address
+    to: emailAddress, // list of receivers
+    subject: 'Your timecapsule is ready', // Subject line
+    text: `Click here to access your time capsule ${CAPSULE_URL}/${capsuleId}`, // plaintext body
+  };
   
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, function(error, info){
