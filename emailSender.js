@@ -56,8 +56,8 @@ async function run() {
     console.log(`Found ${recipientsToSendTo.rows.length} recipients`)
     const recipient_id = [];
     
-    recipientsToSendTo.rows.forEach(async (rec) => {
-      try {
+    for(const rec of recipientsToSendTo.rows){
+         try {
     
       // Send emails to all recipients
        console.log(rec)
@@ -67,10 +67,9 @@ async function run() {
       }
       catch(e) {
       console.error(e)
-     }
-      
-      
-    })
+     } 
+    }
+   
 
     // Update Sent flag on all records
     //await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = true FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE NOT tr.Sent AND tc."Recieved_Date" <= NOW()) t')
