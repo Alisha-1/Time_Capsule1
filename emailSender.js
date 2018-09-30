@@ -1,5 +1,5 @@
 const CAPSULE_URL = process.env.CAPSULE_URL
-const POLLING_TIME = 3 * 60 * 1000 // 5 mins
+const POLLING_TIME = 5 * 60 * 1000 // 5 mins
 //const RUN_TIME = 60 * 60 * 1000 // 1 Hour
 const nodemailer = require('nodemailer')
 const { Pool } = require('pg')
@@ -51,18 +51,18 @@ async function run() {
 //     }
 
     // Run a query to check which recipients I need to send a message to. Check with the sent field in the table
-    const recipientsToSendTo = await client.query('SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE (tr."Sent" =false AND tc."Recieved_Date" <= NOW()) ')
-    console.log('Found ${recipientsToSendTo.rows.length} recipients')
+    const recipientsToSendTo = await client.query('SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE NOT tr."Sent" AND tc."Recieved_Date" <= NOW()')
+    console.log(`Found ${recipientsToSendTo.rows.length} recipients`)
     recipientsToSendTo.rows.forEach(async (rec) => {
       // Send emails to all recipients
       await sendEmail(rec.Recipient_Email, rec.CapsuleID)
     })
 
     // Update Sent flag on all records
-    await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = true FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE ( tr."Sent" = false AND tc."Recieved_Date" <= NOW())) t')
+    await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = true FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE NOT tr."Sent" AND tc."Recieved_Date" <= NOW()) t')
 
     // Once the run is complete then insert job record
-    await client.query('INSERT INTO EMAIL_JOB (LAST_RUN) VALUES (NOW())')
+    await client.query(`INSERT INTO EMAIL_JOB (LAST_RUN) VALUES (NOW())`)
 
     //client.close()
   } catch(e) {
