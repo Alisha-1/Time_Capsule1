@@ -60,6 +60,8 @@ async function run() {
       try {
     
       // Send emails to all recipients
+       console.log(rec)
+
       await sendEmail(rec.Recipient_Email, rec.CapsuleID)
        recipient_id.push (rec.Recipient_id)
       }
