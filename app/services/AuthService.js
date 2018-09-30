@@ -3,6 +3,7 @@ app.factory('AuthService', function($http) {
 
   authService.login = (credentials) => {
       return $http
+    // Go to server.js
           .post('/login', credentials)
           .then((response) => {
               return response.data 
@@ -11,7 +12,15 @@ app.factory('AuthService', function($http) {
 
   authService.register = (details) => {
     return $http
+    // Go to server.js
           .post('/register', details)
+          .then((response) => {
+              return response.data 
+          })
+  }
+
+  authService.glogin = () => {
+    return $http.get('/gurl')
           .then((response) => {
               return response.data 
           })
