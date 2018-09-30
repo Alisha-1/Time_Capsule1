@@ -258,7 +258,7 @@ const url = oauth2Client.generateAuthUrl({
   scope: scopes
 });
 
-app.get("/url", function(req, res) {
+app.get("/gurl", function(req, res) {
   res.send(url);
 });
 app.get("/token", function(req, res) {
