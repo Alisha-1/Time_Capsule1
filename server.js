@@ -238,9 +238,13 @@ async function start() {
 //Google sign in
 
 const oauth2Client = new google.auth.OAuth2(
-  "538032522253-gp3nmii7d59jka3ub4p6urtoj3kt2c46.apps.googleusercontent.com",
-  "pP816EXr_M-FgeVsBg39V9i3",
-  "https://mytimecapsule.herokuapp.com/#/MyCapsule"
+//   "538032522253-gp3nmii7d59jka3ub4p6urtoj3kt2c46.apps.googleusercontent.com",
+//   "pP816EXr_M-FgeVsBg39V9i3",
+//   "https://mytimecapsule.herokuapp.com/#/MyCapsule"
+  
+   "577425348964-3oonc4njvh3396sb1riet3vc5khb0hsn.apps.googleusercontent.com",
+  "sGvFgM7USR7tmpdc6jWeN-c4",
+  "http://localhost:8080/oauthcallback"
 );
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
