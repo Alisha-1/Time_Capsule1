@@ -1,5 +1,5 @@
 angular.module('myApp')
-  .controller('LoginController', ($scope, AuthService, $http, $rootScope, $location) => {
+  .controller('LoginController', ($scope, AuthService, $http , $rootScope, $location) => {
     $scope.credentials = {
       username: '',
       password: ''
@@ -7,15 +7,25 @@ angular.module('myApp')
 
   //Google Login
   var windowOpened;
-  
+
   $scope.glogin = function() {
-    debugger;
-    $http.get("url").then(function(response) {
-      windowOpened = window.open(response.data);
-    });
+    AuthService.glogin()
+    .then((response,err) => {
+      if (err) {
+          debugger;
+      } else {
+        windowOpened = window.open(response);
+          
+      }
+    }) 
+    .catch((e) => {
+      console.error('Could not login', e)
+      $scope.errors = e
+    })
   };
 
   window.onmessage = function(e) {
+    if(windowOpened){
     windowOpened.close();
     var urlWithCode = e.data;
     var idx = urlWithCode.lastIndexOf("code=");
@@ -29,6 +39,7 @@ angular.module('myApp')
     }).then(function(response) {
       console.log(response);
     });
+  }
   };
 
     // $scope.gLogin = function(){
