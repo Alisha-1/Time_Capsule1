@@ -51,7 +51,7 @@ async function run() {
 //     }
 
     // Run a query to check which recipients I need to send a message to. Check with the sent field in the table
-    const recipientsToSendTo = await client.query('SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE (tr.Sent="false" AND tc."Recieved_Date" <= NOW()) ')
+    const recipientsToSendTo = await client.query('SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE (tr.Sent=false AND tc."Recieved_Date" <= NOW()) ')
     console.log('Found ${recipientsToSendTo.rows.length} recipients')
     recipientsToSendTo.rows.forEach(async (rec) => {
       // Send emails to all recipients
@@ -59,7 +59,7 @@ async function run() {
     })
 
     // Update Sent flag on all records
-    await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = "true" FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE ( tr.Sent="false" AND tc."Recieved_Date" <= NOW())) t')
+    await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = true FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE ( tr.Sent= false AND tc."Recieved_Date" <= NOW())) t')
 
     // Once the run is complete then insert job record
     await client.query('INSERT INTO EMAIL_JOB (LAST_RUN) VALUES (NOW())')
