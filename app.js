@@ -2,7 +2,7 @@
 // const wfewhf = require('./test')
 var app = angular.module("myApp", ["ngRoute"]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
 	
     $routeProvider
     .when("/Create", {
@@ -56,4 +56,6 @@ app.config(function($routeProvider) {
         controller: "Event_UploadMoreController",
         css: 'Create.css'
     })
+    $locationProvider.html5Mode(true);
+
 });
