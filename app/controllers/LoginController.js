@@ -5,18 +5,26 @@ angular.module('myApp')
       password: ''
     }
 
-  //Google Login
+    
+    // $scope.glogin = function(googleUser) {
+    //   debugger;
+    //   var profile = googleUser.getBasicProfile();
+    //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //   console.log('Name: ' + profile.getName());
+    //   console.log('Image URL: ' + profile.getImageUrl());
+    //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    // }
+
+  // //Google Login
   var windowOpened;
 
   $scope.glogin = function() {
     AuthService.glogin()
     .then((response,err) => {
-      if (err) {
-          debugger;
-      } else {
+      //Open new window, response=URL
         windowOpened = window.open(response);
           
-      }
+      
     }) 
     .catch((e) => {
       console.error('Could not login', e)
@@ -25,6 +33,7 @@ angular.module('myApp')
   };
 
   window.onmessage = function(e) {
+    //Once login password correct entered come here 
     if(windowOpened){
     windowOpened.close();
     var urlWithCode = e.data;
@@ -33,10 +42,12 @@ angular.module('myApp')
     var splitCode = code.split("&");
     var oauthCode = splitCode[0];
     $http({
+      //get session id 
       url: "token",
       method: "GET",
       params: { code: oauthCode }
     }).then(function(response) {
+
       console.log(response);
     });
   }
