@@ -74,6 +74,9 @@ async function run() {
     // Update Sent flag on all records
     //await client.query('UPDATE "Time_Capsule-Recipient" SET Sent = true FROM (SELECT tc."CapsuleID", tc."Recieved_Date", tr."Recipient_Email" FROM "Time_Capsule" tc INNER JOIN "Time_Capsule-Recipient" tr ON tc."CapsuleID" = tr."CapsuleID" WHERE NOT tr.Sent AND tc."Recieved_Date" <= NOW()) t')
     console.log(recipient_id)
+    
+    //he ANY operator returns true if any of the subquery values meet the condition
+    //The number of elements in the array must match the number of placeholders.
     await client.query( 'UPDATE "Time_Capsule-Recipient" SET Sent=true WHERE "Recipient_id" = ANY ($1)',[recipient_id])
     // Once the run is complete then insert job record
     await client.query(`INSERT INTO EMAIL_JOB (LAST_RUN) VALUES (NOW())`)
