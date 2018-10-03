@@ -8,9 +8,13 @@ var fs = require("fs");
 var passwordHash = require("password-hash");
 var GoogleSignIn = require("google-sign-in");
 const { google } = require("googleapis");
+
+//<script src="https://apis.google.com/js/platform.js" async defer></script>
+//<meta name="google-signin-client_id" content="987882736634-9bg47alpued7f6lk8m55nemeoaf4m4nj.apps.googleusercontent.com"></meta>
 // var project = new GoogleSignIn.Project(
 //   "531816459848-26tnvqqaff0ieedn4dp4f2hii3fq1b6m.apps.googleusercontent.com"
 // );
+
 
 
 AWS.config = new AWS.Config();
@@ -51,6 +55,19 @@ app.post("/login", async (req, res) => {
       error: e.toString()
     });
   }
+});
+
+//URL of google page
+app.get("/gurl", function(req, res) {
+  res.send(url);
+});
+
+app.get("/token", function(req, res) {
+  var code = req.query.code;
+  oauth2Client.getToken(code, function(err, tokens) {
+    oauth2Client.setCredentials(tokens);
+    res.send(tokens);
+  });
 });
 
 // app.post("/googlelogin", async (req, res) => {
@@ -238,40 +255,15 @@ async function start() {
   }
 }
 
-
-// app.get("/gurl", function(req, res) {
-//   res.send(url);
-// });
-
-// app.get("/token", function(req, res) {
-//   var code = req.query.code;
-//   oauth2Client.getToken(code, function(err, tokens) {
-//     oauth2Client.setCredentials(tokens);
-//     res.send(tokens);
-//   });
-// });
-
-app.get("/gurl", async(req, res) =>{
-  res.send(url);
-});
-
-app.get("/token", async (req, res) =>{
-  var code = req.query.code;
-  oauth2Client.getToken(code, function(err, tokens) {
-    oauth2Client.setCredentials(tokens);
-    res.send(tokens);
-  });
-});
-
 //Google sign in
 
 const oauth2Client = new google.auth.OAuth2(
   // "538032522253-gp3nmii7d59jka3ub4p6urtoj3kt2c46.apps.googleusercontent.com",
   // "pP816EXr_M-FgeVsBg39V9i3",
   // "https://mytimecapsule.herokuapp.com/#/MyCapsule"
-  "577425348964-3oonc4njvh3396sb1riet3vc5khb0hsn.apps.googleusercontent.com",
-  "sGvFgM7USR7tmpdc6jWeN-c4",
-  "https://mytimecapsule.herokuapp.com/MyCapsule"
+  "247486305400-obbvj8j88gqmohted4l6umlh6fkq06si.apps.googleusercontent.com",
+  "_97sn2RBJtn96T_PN_4tpy1Y",
+  "http://localhost:8080/oauthcallback"
 
 );
 
