@@ -1,5 +1,5 @@
 const CAPSULE_URL = process.env.CAPSULE_URL
-const POLLING_TIME = 5 * 60 * 1000 // 5 mins
+const POLLING_TIME = 3 * 60 * 1000 // 5 mins
 //const RUN_TIME = 60 * 60 * 1000 // 1 Hour
 const nodemailer = require('nodemailer')
 const { Pool } = require('pg')
