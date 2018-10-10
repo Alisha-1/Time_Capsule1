@@ -44,7 +44,7 @@ async function checkLogin(username, password) {
   }
 }
 
-async function createUser(username, password, name) {
+async function createUser(username, password, name,normalpassowrd) {
   const client = await connect()
 
   // Checks to see if the user already exists
@@ -56,7 +56,7 @@ async function createUser(username, password, name) {
     } else {
       // Create record in Database
       await client.query(`INSERT INTO "Users" ("Email", "Password", "Name") VALUES ('${username}', '${password}', '${name}')`)
-      return await checkLogin(username, password)
+      return await checkLogin(username, normalpassowrd)
     }
   }
 
@@ -70,6 +70,8 @@ async function event_uploadMore({images,capsuleId}) {
   images.forEach(async image => {
     await client.query(`INSERT INTO "Content" ("CapsuleID", "Description", "URL") VALUES ('${capsuleId}', '${image.description}', '${image.fileName}')`)
 })
+ return capsuleId
+
 }
 
 async function createCapsule({ images, date, recipient, userId, name, description, coverImage }) {
@@ -102,7 +104,9 @@ async function getCapsule(capsuleId) {
   const tc = await client.query(`SELECT * FROM "Time_Capsule", "Users" WHERE "Time_Capsule"."CapsuleID" = ${capsuleId} AND  "Time_Capsule"."UserID" = "Users"."UserID"`)
   const images = await client.query(`SELECT * FROM "Content" WHERE "CapsuleID" = ${capsuleId}`)
 
+  //result is an object
   let result = tc.rows[0]
+  //Add "images" property to result as array of rows. Images: image1, image2, image2
   result['images'] = images.rows
   return result
 }
