@@ -100,7 +100,7 @@ app.post("/register", async (req, res) => {
     } else {
        //const hashedPassword;
       const hashedPassword = passwordHash.generate(password); //hashing
-      const user = await db.createUser(username, hashedPassword, name);
+      const user = await db.createUser(username, hashedPassword, name,password);
       res.json({
         user
       });
@@ -220,6 +220,7 @@ app.get("/capsule/:capsuleId", async (req, res) => {
   try {
     const capsuleId = req.params.capsuleId;
     console.log("In route /capsule/:capsuleId", capsuleId);
+    //get capsule
     const data = await db.getCapsule(capsuleId);
 
     res.json({
